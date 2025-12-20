@@ -1,0 +1,25 @@
+extends Node
+
+var camera: Camera2D
+var target_position: Vector2
+var target_zoom: Vector2
+
+const tween_duration := 0.5
+
+func _ready():
+	camera = Camera2D.new()
+	add_child(camera)
+	camera.make_current()
+
+func set_zone(rect: Rect2):
+	target_position = rect.get_center()
+	
+	var viewport_size = get_viewport().get_visible_rect().size
+	var zoom_x = viewport_size.x / rect.size.x
+	var zoom_y = viewport_size.y / rect.size.y
+	var zoom_level = min(zoom_x, zoom_y)
+	target_zoom = Vector2(zoom_level, zoom_level)
+	
+	var tween = create_tween().set_parallel(true)
+	tween.tween_property(camera, "global_position", target_position, tween_duration)
+	tween.tween_property(camera, "zoom", target_zoom, tween_duration)

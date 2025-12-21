@@ -7,7 +7,7 @@ var target_position: Vector2
 var target_zoom: Vector2
 
 var active_zones: Array[Zone] = []
-var snap_instant := false
+var snap_instant_frame := -999
 
 func _ready():
 	camera = Camera2D.new()
@@ -15,7 +15,7 @@ func _ready():
 	camera.make_current()
 
 func next_snap_instant() -> void:
-	snap_instant = true
+	snap_instant_frame = Engine.get_physics_frames()
 
 func enter_zone(zone: Zone):
 	active_zones.append(zone)
@@ -35,10 +35,9 @@ func set_zone(rect: Rect2):
 	var zoom_level = min(zoom_x, zoom_y)
 	target_zoom = Vector2(zoom_level, zoom_level)
 	
-	if snap_instant:
+	if Engine.get_physics_frames() - snap_instant_frame <= 2:
 		camera.global_position = target_position
 		camera.zoom = target_zoom
-		snap_instant = false
 	else:
 		var tween = create_tween().set_parallel(true)
 		tween.set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_LINEAR)

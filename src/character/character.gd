@@ -2,7 +2,7 @@ extends CharacterBody2D
 class_name Character
 
 @export var sprite_kind: CharacterSprite.CharacterSpriteKind
-@export var speed := 60.0
+@export var speed := 80.0
 @onready var sprite: CharacterSprite = $CharacterSprite
 
 var movement_direction := Vector2.ZERO

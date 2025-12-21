@@ -4,8 +4,8 @@
 [ext_resource type="PackedScene" uid="uid://d4bwlddqpk58g" path="res://character/sprite/character_sprite.tscn" id="1_yf0e5"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1l1n4"]
-radius = 4.0
-height = 8.0
+radius = 3.0
+height = 6.0
 
 [node name="Character" type="CharacterBody2D"]
 script = ExtResource("1_1l1n4")

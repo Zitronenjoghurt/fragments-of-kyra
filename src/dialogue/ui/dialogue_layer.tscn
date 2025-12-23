@@ -1,13 +1,21 @@
-[gd_scene load_steps=5 format=3 uid="uid://cnkc6sgpj3fsx"]
+[gd_scene load_steps=9 format=3 uid="uid://cnkc6sgpj3fsx"]
 
 [ext_resource type="Script" uid="uid://c5w3rfri1n18h" path="res://dialogue/ui/dialogue_layer.gd" id="1_q2otv"]
 [ext_resource type="Texture2D" uid="uid://cemeshe7u04xd" path="res://assets/ui/dialogue_box.png" id="2_ltdoe"]
 [ext_resource type="FontFile" uid="uid://1kf876r25aq" path="res://assets/ui/fonts/font_normal.ttf" id="3_bvbi3"]
+[ext_resource type="Texture2D" uid="uid://b4omtvxq6n3kl" path="res://assets/ui/dialogue_box_name.png" id="4_re732"]
+[ext_resource type="Texture2D" uid="uid://bylxb0vb46ssr" path="res://assets/ui/dialogue_box_faceset.png" id="5_b2klp"]
+[ext_resource type="Texture2D" uid="uid://x41lrn0j44f2" path="res://assets/characters/boy/faceset.png" id="6_sfcfa"]
 
 [sub_resource type="FontVariation" id="FontVariation_4uknr"]
 base_font = ExtResource("3_bvbi3")
 variation_embolden = 0.5
 spacing_space = 5
+
+[sub_resource type="LabelSettings" id="LabelSettings_re732"]
+font = ExtResource("3_bvbi3")
+outline_size = 6
+outline_color = Color(0.078431375, 0.105882354, 0.105882354, 1)
 
 [node name="DialogueLayer" type="CanvasLayer"]
 script = ExtResource("1_q2otv")
@@ -17,7 +25,7 @@ anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -100.0
+offset_top = -120.0
 grow_horizontal = 2
 grow_vertical = 0
 size_flags_vertical = 8
@@ -25,18 +33,11 @@ theme_override_constants/margin_left = 16
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 9
 
-[node name="SimpleBox" type="NinePatchRect" parent="MarginContainer"]
+[node name="SimpleBox" type="TextureRect" parent="MarginContainer"]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
 texture = ExtResource("2_ltdoe")
-region_rect = Rect2(1, 1, 314, 58)
-patch_margin_left = 7
-patch_margin_top = 7
-patch_margin_right = 7
-patch_margin_bottom = 7
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/SimpleBox"]
 layout_mode = 1
@@ -45,14 +46,18 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 7
-theme_override_constants/margin_top = 7
-theme_override_constants/margin_right = 7
-theme_override_constants/margin_bottom = 7
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
 
-[node name="SimpleText" type="RichTextLabel" parent="MarginContainer/SimpleBox/MarginContainer"]
+[node name="SimpleText" type="RichTextLabel" parent="MarginContainer/SimpleBox"]
 unique_name_in_owner = true
-layout_mode = 2
+layout_mode = 0
+offset_left = 18.0
+offset_top = 13.0
+offset_right = 590.0
+offset_bottom = 98.0
 theme_override_colors/default_color = Color(0.078431375, 0.105882354, 0.105882354, 1)
 theme_override_fonts/normal_font = SubResource("FontVariation_4uknr")
 theme_override_fonts/bold_font = SubResource("FontVariation_4uknr")
@@ -60,3 +65,84 @@ theme_override_fonts/bold_italics_font = SubResource("FontVariation_4uknr")
 theme_override_fonts/italics_font = SubResource("FontVariation_4uknr")
 theme_override_fonts/mono_font = SubResource("FontVariation_4uknr")
 bbcode_enabled = true
+text = "Why did you eat all of the cookies?
+ARE WE NOT FEEDING YOU ANYTHING???"
+
+[node name="NameBox" type="TextureRect" parent="MarginContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+texture = ExtResource("4_re732")
+
+[node name="NameText" type="RichTextLabel" parent="MarginContainer/NameBox"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 18.0
+offset_top = 27.0
+offset_right = 590.0
+offset_bottom = 98.0
+theme_override_colors/default_color = Color(0.078431375, 0.105882354, 0.105882354, 1)
+theme_override_fonts/normal_font = SubResource("FontVariation_4uknr")
+theme_override_fonts/bold_font = SubResource("FontVariation_4uknr")
+theme_override_fonts/bold_italics_font = SubResource("FontVariation_4uknr")
+theme_override_fonts/italics_font = SubResource("FontVariation_4uknr")
+theme_override_fonts/mono_font = SubResource("FontVariation_4uknr")
+bbcode_enabled = true
+text = "Why did you eat all of the cookies?
+ARE WE NOT FEEDING YOU ANYTHING???"
+
+[node name="NameName" type="Label" parent="MarginContainer/NameBox"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 12.999998
+offset_top = 0.9999997
+offset_right = 168.0
+offset_bottom = 23.0
+scale = Vector2(0.8, 0.8)
+text = "YOUR   MOM"
+label_settings = SubResource("LabelSettings_re732")
+horizontal_alignment = 1
+clip_text = true
+
+[node name="FaceBox" type="TextureRect" parent="MarginContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+texture = ExtResource("5_b2klp")
+
+[node name="FaceTexture" type="TextureRect" parent="MarginContainer/FaceBox"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 11.0
+offset_top = 26.0
+offset_right = 90.0
+offset_bottom = 100.0
+texture = ExtResource("6_sfcfa")
+
+[node name="FaceText" type="RichTextLabel" parent="MarginContainer/FaceBox"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 107.0
+offset_top = 27.0
+offset_right = 588.0
+offset_bottom = 98.0
+theme_override_colors/default_color = Color(0.078431375, 0.105882354, 0.105882354, 1)
+theme_override_fonts/normal_font = SubResource("FontVariation_4uknr")
+theme_override_fonts/bold_font = SubResource("FontVariation_4uknr")
+theme_override_fonts/bold_italics_font = SubResource("FontVariation_4uknr")
+theme_override_fonts/italics_font = SubResource("FontVariation_4uknr")
+theme_override_fonts/mono_font = SubResource("FontVariation_4uknr")
+bbcode_enabled = true
+text = "What the sigma mom? It's fanum tax!"
+
+[node name="FaceName" type="Label" parent="MarginContainer/FaceBox"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 13.000002
+offset_right = 168.0
+offset_bottom = 22.0
+scale = Vector2(0.8, 0.8)
+text = "TWAT"
+label_settings = SubResource("LabelSettings_re732")
+horizontal_alignment = 1
+clip_text = true

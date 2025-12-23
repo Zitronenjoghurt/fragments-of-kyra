@@ -2,7 +2,7 @@ extends CharacterBody2D
 class_name Character
 
 @export var sprite_kind: CharacterSprite.CharacterSpriteKind
-@export var speed := 80.0
+@export var speed := 70.0
 @export var bob_amount := 0.05
 @export var bob_duration := 0.4
 @onready var sprite: CharacterSprite = $CharacterSprite

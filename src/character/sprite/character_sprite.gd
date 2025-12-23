@@ -14,6 +14,7 @@ const SPRITESHEETS = {
 }
 
 func set_sprite_kind(kind: CharacterSpriteKind) -> void:
+	sprite_frames = sprite_frames.duplicate(true)
 	var spritesheet = SPRITESHEETS[kind]
 	for anim_name in sprite_frames.get_animation_names():
 		for i in sprite_frames.get_frame_count(anim_name):

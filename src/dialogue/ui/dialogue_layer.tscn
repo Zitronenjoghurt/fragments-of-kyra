@@ -1,0 +1,62 @@
+[gd_scene load_steps=5 format=3 uid="uid://cnkc6sgpj3fsx"]
+
+[ext_resource type="Script" uid="uid://c5w3rfri1n18h" path="res://dialogue/ui/dialogue_layer.gd" id="1_q2otv"]
+[ext_resource type="Texture2D" uid="uid://cemeshe7u04xd" path="res://assets/ui/dialogue_box.png" id="2_ltdoe"]
+[ext_resource type="FontFile" uid="uid://1kf876r25aq" path="res://assets/ui/fonts/font_normal.ttf" id="3_bvbi3"]
+
+[sub_resource type="FontVariation" id="FontVariation_4uknr"]
+base_font = ExtResource("3_bvbi3")
+variation_embolden = 0.5
+spacing_space = 5
+
+[node name="DialogueLayer" type="CanvasLayer"]
+script = ExtResource("1_q2otv")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -100.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 8
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 9
+
+[node name="SimpleBox" type="NinePatchRect" parent="MarginContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("2_ltdoe")
+region_rect = Rect2(1, 1, 314, 58)
+patch_margin_left = 7
+patch_margin_top = 7
+patch_margin_right = 7
+patch_margin_bottom = 7
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/SimpleBox"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 7
+theme_override_constants/margin_top = 7
+theme_override_constants/margin_right = 7
+theme_override_constants/margin_bottom = 7
+
+[node name="SimpleText" type="RichTextLabel" parent="MarginContainer/SimpleBox/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/default_color = Color(0.078431375, 0.105882354, 0.105882354, 1)
+theme_override_fonts/normal_font = SubResource("FontVariation_4uknr")
+theme_override_fonts/bold_font = SubResource("FontVariation_4uknr")
+theme_override_fonts/bold_italics_font = SubResource("FontVariation_4uknr")
+theme_override_fonts/italics_font = SubResource("FontVariation_4uknr")
+theme_override_fonts/mono_font = SubResource("FontVariation_4uknr")
+bbcode_enabled = true

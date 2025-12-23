@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="Dialogue" load_steps=5 format=3 uid="uid://1x0vx06ynv1h"]
+
+[ext_resource type="Script" uid="uid://dv3nnisoswcjp" path="res://dialogue/resource/dialogue_entry.gd" id="1_4536y"]
+[ext_resource type="Script" uid="uid://cl8y1xghoxu7p" path="res://dialogue/resource/dialogue.gd" id="2_50pir"]
+
+[sub_resource type="Resource" id="Resource_4536y"]
+script = ExtResource("1_4536y")
+text = "What is happening?"
+name = "???"
+face_set = 2
+metadata/_custom_type_script = "uid://dv3nnisoswcjp"
+
+[sub_resource type="Resource" id="Resource_50pir"]
+script = ExtResource("1_4536y")
+text = "I don't know whats going on..."
+name = "???"
+face_set = 2
+metadata/_custom_type_script = "uid://dv3nnisoswcjp"
+
+[resource]
+script = ExtResource("2_50pir")
+entries = Array[ExtResource("1_4536y")]([SubResource("Resource_4536y"), SubResource("Resource_50pir")])
+metadata/_custom_type_script = "uid://cl8y1xghoxu7p"

@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 CameraManager="*res://autoload/camera_manager.gd"
 Scenes="*res://autoload/scenes.gd"
+DialoguePlayer="*res://dialogue/ui/dialogue_layer.tscn"
 
 [debug]
 

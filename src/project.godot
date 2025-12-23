@@ -11,13 +11,14 @@ config_version=5
 [application]
 
 config/name="Fragments of Kyra"
-run/main_scene="uid://oab178gqkxo4"
+run/main_scene="uid://bjamhi3oy0muf"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [autoload]
 
 CameraManager="*res://autoload/camera_manager.gd"
+Scenes="*res://autoload/scenes.gd"
 
 [debug]
 

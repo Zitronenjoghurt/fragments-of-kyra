@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://db3wrprtyfsjw"]
 
 [ext_resource type="Script" uid="uid://bprau2d8lrodo" path="res://interactable/interactable.gd" id="1_tno2t"]
-[ext_resource type="FontFile" uid="uid://1kf876r25aq" path="res://assets/fonts/font_normal.ttf" id="2_pve3w"]
+[ext_resource type="FontFile" uid="uid://1kf876r25aq" path="res://assets/ui/fonts/font_normal.ttf" id="2_pve3w"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_if3l3"]
 font = ExtResource("2_pve3w")
@@ -10,6 +10,7 @@ font = ExtResource("2_pve3w")
 script = ExtResource("1_tno2t")
 
 [node name="Label" type="Label" parent="."]
+visible = false
 offset_right = 48.0
 offset_bottom = 16.0
 text = "Interact"

@@ -1,17 +1,19 @@
 [gd_scene load_steps=8 format=4 uid="uid://oab178gqkxo4"]
 
 [ext_resource type="TileSet" uid="uid://hqxye6snbpcu" path="res://map/tileset.tres" id="1_6sl0o"]
+[ext_resource type="Script" uid="uid://cgnta553cngrq" path="res://map/region.gd" id="1_vuyqi"]
 [ext_resource type="PackedScene" uid="uid://cwht4bgrtsy7e" path="res://character/character.tscn" id="2_7lfkk"]
 [ext_resource type="PackedScene" uid="uid://ovhildlidjhp" path="res://map/teleporter/map_teleporter.tscn" id="3_ax6el"]
-[ext_resource type="Script" uid="uid://bv5fwk2w8du34" path="res://character/player_controller.gd" id="3_rk1et"]
 [ext_resource type="PackedScene" uid="uid://tn3jqimx6wxq" path="res://map/zone/zone.tscn" id="4_7lfkk"]
 [ext_resource type="PackedScene" uid="uid://db3wrprtyfsjw" path="res://interactable/interactable.tscn" id="6_ax6el"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ax6el"]
 radius = 24.0
 
-[node name="Test" type="Node2D"]
+[node name="Test" type="Node2D" node_paths=PackedStringArray("default_player_spawn")]
 y_sort_enabled = true
+script = ExtResource("1_vuyqi")
+default_player_spawn = NodePath("PlayerSpawn")
 
 [node name="Map" type="Node2D" parent="."]
 y_sort_enabled = true
@@ -108,26 +110,18 @@ destination = NodePath("../../StartRight/House1Entry/House1ExitX")
 [node name="House1EntryX" type="Marker2D" parent="Zones/House1Interior/House1Exit"]
 position = Vector2(0, -16)
 
-[node name="Character" parent="." groups=["player"] instance=ExtResource("2_7lfkk")]
-y_sort_enabled = true
-position = Vector2(200, 72)
-sprite_kind = 2
-speed = 80.0
-bob_duration = 0.8
+[node name="PlayerSpawn" type="Marker2D" parent="."]
+position = Vector2(64, 80)
 
-[node name="PlayerController" type="Node" parent="Character"]
-script = ExtResource("3_rk1et")
-metadata/_custom_type_script = "uid://bv5fwk2w8du34"
-
-[node name="Character2" parent="." instance=ExtResource("2_7lfkk")]
+[node name="Boy" parent="." instance=ExtResource("2_7lfkk")]
 position = Vector2(128, 80)
 sprite_kind = 0
 speed = 80.0
 bob_duration = 0.65
 
-[node name="Interactable" parent="Character2" instance=ExtResource("6_ax6el")]
+[node name="Interactable" parent="Boy" instance=ExtResource("6_ax6el")]
 prompt_y_offset = -22.0
 prompt_text = "Talk"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Character2/Interactable"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Boy/Interactable"]
 shape = SubResource("CircleShape2D_ax6el")

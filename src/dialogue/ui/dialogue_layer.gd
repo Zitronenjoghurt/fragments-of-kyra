@@ -12,10 +12,15 @@ extends CanvasLayer
 @onready var face_text: RichTextLabel = %FaceText
 @onready var face_texture: TextureRect = %FaceTexture
 
+@onready var arrow: Sprite2D = %Arrow
+var _arrow_tween: Tween
+var _arrow_base_y: float
+
 var _current_dialogue: Dialogue
 var _dialogue_index: int
 
 func start(dialogue: Dialogue):
+	_arrow_base_y = arrow.position.y
 	_current_dialogue = dialogue
 	_dialogue_index = 0
 	show()
@@ -35,6 +40,11 @@ func _show_current_entry():
 	else:
 		_show_simple(entry)
 	
+	if _dialogue_index < _current_dialogue.entries.size() - 1:
+		_start_arrow()
+	else:
+		_stop_arrow()
+	
 
 func _show_simple(entry: DialogueEntry):
 	simple_box.show()
@@ -51,3 +61,40 @@ func _show_face(entry: DialogueEntry):
 	face_name.text = entry.name
 	if entry.face_set:
 		face_texture.texture = Dialogue.FACESET_TEXTURES[entry.face_set]
+
+func _start_arrow():
+	_stop_arrow()
+	
+	var base_y = arrow.position.y
+	_arrow_tween = create_tween().set_loops()
+	_arrow_tween.tween_property(arrow, "position:y", base_y + 6, 0.3).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	_arrow_tween.tween_property(arrow, "position:y", base_y, 0.3).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_IN)
+	arrow.show()
+
+func _stop_arrow():
+	arrow.hide()
+	if _arrow_tween:
+		_arrow_tween.kill()
+		_arrow_tween = null
+	arrow.position.y = _arrow_base_y
+
+func _unhandled_input(event: InputEvent) -> void:
+	if not visible:
+		return
+	
+	if event.is_action_pressed("Interact"):
+		_advance_dialogue()
+
+func _advance_dialogue() -> void:
+	_dialogue_index += 1
+	
+	if _dialogue_index >= _current_dialogue.entries.size():
+		_end_dialogue()
+	else:
+		_show_current_entry()
+
+func _end_dialogue():
+	_stop_arrow()
+	hide()
+	_current_dialogue = null
+	_dialogue_index = 0

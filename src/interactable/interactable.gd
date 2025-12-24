@@ -1,4 +1,5 @@
 extends Area2D
+class_name Interactable
 
 signal interacted
 
@@ -29,6 +30,8 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func _do_interact() -> void:
 	interacted.emit()
+	_active = false
+	_hide_prompt()
 
 func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("player"):

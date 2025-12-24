@@ -12,9 +12,9 @@ metadata/_custom_type_script = "uid://dv3nnisoswcjp"
 
 [sub_resource type="Resource" id="Resource_50pir"]
 script = ExtResource("1_4536y")
-text = "I don't know whats going on..."
+text = "I don't know, don't ask me!"
 name = "???"
-face_set = 2
+face_set = 1
 metadata/_custom_type_script = "uid://dv3nnisoswcjp"
 
 [resource]

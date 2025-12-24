@@ -1,11 +1,13 @@
-[gd_scene load_steps=8 format=4 uid="uid://oab178gqkxo4"]
+[gd_scene load_steps=10 format=4 uid="uid://oab178gqkxo4"]
 
 [ext_resource type="TileSet" uid="uid://hqxye6snbpcu" path="res://map/tileset.tres" id="1_6sl0o"]
 [ext_resource type="Script" uid="uid://cgnta553cngrq" path="res://map/region.gd" id="1_vuyqi"]
 [ext_resource type="PackedScene" uid="uid://cwht4bgrtsy7e" path="res://character/character.tscn" id="2_7lfkk"]
 [ext_resource type="PackedScene" uid="uid://ovhildlidjhp" path="res://map/teleporter/map_teleporter.tscn" id="3_ax6el"]
 [ext_resource type="PackedScene" uid="uid://tn3jqimx6wxq" path="res://map/zone/zone.tscn" id="4_7lfkk"]
+[ext_resource type="Script" uid="uid://b4m1qtay7chje" path="res://dialogue/dialogue_interactable.gd" id="6_5voa3"]
 [ext_resource type="PackedScene" uid="uid://db3wrprtyfsjw" path="res://interactable/interactable.tscn" id="6_ax6el"]
+[ext_resource type="Resource" uid="uid://1x0vx06ynv1h" path="res://dialogue/data/test.tres" id="7_psaan"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ax6el"]
 radius = 24.0
@@ -119,9 +121,15 @@ sprite_kind = 0
 speed = 80.0
 bob_duration = 0.65
 
-[node name="Interactable" parent="Boy" instance=ExtResource("6_ax6el")]
+[node name="DialogueInteractable" type="Node2D" parent="Boy" node_paths=PackedStringArray("interactable")]
+script = ExtResource("6_5voa3")
+dialogue = ExtResource("7_psaan")
+interactable = NodePath("Interactable")
+metadata/_custom_type_script = "uid://b4m1qtay7chje"
+
+[node name="Interactable" parent="Boy/DialogueInteractable" instance=ExtResource("6_ax6el")]
 prompt_y_offset = -22.0
 prompt_text = "Talk"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Boy/Interactable"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Boy/DialogueInteractable/Interactable"]
 shape = SubResource("CircleShape2D_ax6el")

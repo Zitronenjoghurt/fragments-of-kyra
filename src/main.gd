@@ -6,6 +6,3 @@ func _ready() -> void:
 	if default_region:
 		var region_instance = default_region.instantiate()
 		add_child(region_instance)
-	
-	var dialogue = preload("res://dialogue/data/test.tres")
-	DialoguePlayer.start(dialogue)
